@@ -1,5 +1,5 @@
 
-import Phaser from 'Phaser'
+import Phaser from 'phaser'
 
 import Game from './scenes/Game.js'
 import GameOver from './scenes/GameOver.js'
