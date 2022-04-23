@@ -10,7 +10,7 @@ const config = {
     width: 640,
     height: 480,
     parent: 'mario',
-    backgroundColor: '#FFFFAC',
+    backgroundColor: '#213166',
     title: 'Tilemap',
     url: 'webtips.dev',
     pixelArt: true,

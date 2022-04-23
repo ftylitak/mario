@@ -43,7 +43,7 @@ class Player {
             this.sprite.body.onFloor() && 
             !this.sprite.isDed && this.sprite.play('run', true);
 
-            this.scene.cameras.main.stopFollow(this.sprite);
+            //this.scene.cameras.main.stopFollow(this.sprite);
         } else if (input.right.isDown) {
             this.sprite.setVelocityX(200).setFlipX(false);
             this.sprite.body.onFloor() &&

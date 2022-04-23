@@ -1,4 +1,6 @@
 const fs = require('fs');
+const Path = require('path');
+
 const paths = {
     build: {
         root: './build',
@@ -10,6 +12,23 @@ const paths = {
     }
 };
 
+const deleteFolderRecursive = function (directoryPath) {
+    if (fs.existsSync(directoryPath)) {
+        fs.readdirSync(directoryPath).forEach((file, index) => {
+          const curPath = Path.join(directoryPath, file);
+          if (fs.lstatSync(curPath).isDirectory()) {
+           // recurse
+            deleteFolderRecursive(curPath);
+          } else {
+            // delete file
+            fs.unlinkSync(curPath);
+          }
+        });
+        fs.rmdirSync(directoryPath);
+      }
+    };
+
+deleteFolderRecursive(paths.build.root)
 
 if (!fs.existsSync(paths.build.root)) {
     fs.mkdirSync(paths.build.root);

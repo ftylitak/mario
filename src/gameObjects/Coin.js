@@ -14,19 +14,32 @@ class Coin {
         const coinObjects = this.scene.map.getObjectLayer('coin').objects;
         
         for (const coin of coinObjects) {
-            this.coins.create(coin.x, coin.y, 'atlas')
-            .setOrigin(0)
-            .setDepth(-1);
+            console.log(coin)
+            const flagCoordinates = this.scene.tileset.texCoordinates[coin.gid-1]; // 962 is the tile index in tiled for the flag
+
+            this.scene = scene;
+            const sprt = this.scene.add.tileSprite(coin.x+2, coin.y+2, 16, 16, 'tiles')
+                .setOrigin(0, 0)
+                .setScale(1.25)
+                .setTilePosition(flagCoordinates.x, flagCoordinates.y);
+
+            this.coins.add(sprt)
+
+            //this.scene.map.createFromTiles(coin.gid, null, {key: 'tiles'}, this.scene)
+            // this.coins.create(coin.x, coin.y)
+            //     .setOrigin(0)
+            //     .setDepth(-1);
         }
 
         // --- Or ---
         // const coinSprites = this.scene.map.createFromObjects('coin');
 
         // for (const coin of coinSprites) {
-        //     coin.setTexture('atlas')
-        //         .setScale(1) // setTexture resets the scale to .5 so this is needed
-        //         .setOrigin(0)
-        //         .setDepth(-1);
+        //     console.log(coin)
+        //     // coin.setTexture('atlas')
+        //     //     .setScale(1) // setTexture resets the scale to .5 so this is needed
+        //     //     .setOrigin(0)
+        //     //     .setDepth(-1);
             
         //     this.coins.add(coin);
         // }
@@ -39,9 +52,9 @@ class Coin {
     }
 
     update() {
-        for (const coin of this.coins.children.entries) {
-            coin.play('rotate', true);
-        }
+        // for (const coin of this.coins.children.entries) {
+        //     coin.play('rotate', true);
+        // }
     }
 
     collect() {
