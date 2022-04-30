@@ -28,28 +28,19 @@ class Player {
         return this;
     }
 
-    reFollowPlayer() {
-        this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
-
-        if (this.sprite.body.position.x + this.sprite.body.width / 2 > this.scene.cameras.main.midPoint.x &&
-            !this.scene.cameras.main._follow) {
-            this.scene.cameras.main.startFollow(this.sprite);
-        }
-    }
-
     update(input) {
         if (input.left.isDown) {
             this.sprite.setVelocityX(-200).setFlipX(true);
             this.sprite.body.onFloor() && 
             !this.sprite.isDed && this.sprite.play('run', true);
 
-            //this.scene.cameras.main.stopFollow(this.sprite);
+            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
         } else if (input.right.isDown) {
             this.sprite.setVelocityX(200).setFlipX(false);
             this.sprite.body.onFloor() &&
             !this.sprite.isDed && this.sprite.play('run', true);
         
-            this.reFollowPlayer();
+            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
         } else {
             this.sprite.setVelocityX(0);
             this.sprite.body.onFloor() &&
