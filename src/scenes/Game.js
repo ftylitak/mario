@@ -20,6 +20,7 @@ class Game extends Phaser.Scene {
     preload() {
         this.load.image('tiles', './assets/tiles.png');
         this.load.image('bar-Tiles', './assets/bar-Tiles.png');
+        this.load.image('bar-items', './assets/bar-2-tiles.png');
         this.load.tilemapTiledJSON('map', './assets/map.json');
         this.load.atlas('atlas', './assets/mario-atlas.png','./assets/mario-atlas.json');
 
@@ -37,12 +38,14 @@ class Game extends Phaser.Scene {
         this.map = this.make.tilemap({ key: 'map' });
         this.tileset = this.map.addTilesetImage('map-tileset', 'tiles');
         this.barTileset = this.map.addTilesetImage('bar-tiles', 'bar-Tiles');
+        this.barItemTileset = this.map.addTilesetImage('bar-items-tileset', 'bar-items');
 
         this.platform = this.map.createStaticLayer('platform', this.tileset, 0, 0);
         this.ship = this.map.createStaticLayer('ship', this.tileset, 0, 0);
 
         this.map.createStaticLayer('background', this.tileset, 0, 0);
         this.map.createStaticLayer('background-bar-tiles', this.barTileset, 0, -16);
+        this.map.createStaticLayer('background-bar-item-tiles', this.barItemTileset, 0, 0);
         this.platform.setCollisionByExclusion(noCollisionTiles, true);
         this.ship.setCollisionByExclusion(noCollisionTiles, true);
 
