@@ -18,10 +18,11 @@ class Coin {
             const flagCoordinates = this.scene.tileset.texCoordinates[coin.gid-1]; // 962 is the tile index in tiled for the flag
 
             this.scene = scene;
-            const sprt = this.scene.add.tileSprite(coin.x+2, coin.y+2, 16, 16, 'tiles')
+            const sprt = this.scene.add.tileSprite(coin.x, coin.y-16, 16, 16, 'tiles')
                 .setOrigin(0, 0)
-                .setScale(1.25)
+               // .setScale(1.5)
                 .setTilePosition(flagCoordinates.x, flagCoordinates.y);
+            sprt.texture.setFilter(undefined)
 
             this.coins.add(sprt)
 
