@@ -55,7 +55,7 @@ const config = {
         // maxWidth: 1600,
         // maxHeight: 1200,
 
-        zoom: 1.25,  // Size of game canvas = game size * zoom
+        zoom: 1.5,  // Size of game canvas = game size * zoom
     },
     render: {
         pixelArt: true

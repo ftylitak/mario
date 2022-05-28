@@ -47,7 +47,9 @@ class Player {
             !this.sprite.isDed && this.sprite.play('idle', true);
         }
 
-        if ((input.space.isDown && this.sprite.body.onFloor())) {
+        if ((input.space.isDown 
+               // && this.sprite.body.onFloor()
+                )) {
             this.sprite.setVelocityY(-350);
             this.sprite.play('jump', true);
         }
