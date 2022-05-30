@@ -2,6 +2,7 @@ import Player from '../gameObjects/Player'
 import Debugger from '../gameObjects/Debugger'
 import Goomba from '../gameObjects/Goomba'
 import Coin from '../gameObjects/Coin'
+import StaticObjects from '../gameObjects/StaticObjects'
 import Flag from '../gameObjects/Flag'
 
 import tiles from '../config/tiles'
@@ -76,6 +77,7 @@ class Game extends Phaser.Scene {
 
         this.map.createStaticLayer('background', this.tileset, 0, 0);
         this.map.createStaticLayer('background-bar-tiles', this.barTileset, 0, -16);
+        this.map.createStaticLayer('background-bar-tiles-foreground', this.barTileset, 0, -16);
         this.map.createStaticLayer('background-bar-item-tiles', this.barItemTileset, 0, 0);
         this.map.createStaticLayer('background-bar-item-foreground-tiles', this.barItemTileset, 0, 0);
         this.platform.setCollisionByExclusion(noCollisionTiles, true);
@@ -85,6 +87,7 @@ class Game extends Phaser.Scene {
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
+        this.staticObjects = new StaticObjects(this)
         this.debugger = new Debugger(this);
 
         // const loadTileSprite = (imageName, variableName) => {

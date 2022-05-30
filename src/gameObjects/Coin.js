@@ -12,38 +12,36 @@ class Coin {
 
         // You could also use the same object layer and differentiate between different objects by custom properties
         const coinObjects = this.scene.map.getObjectLayer('coin').objects;
+        const coinBarObjects = this.scene.map.getObjectLayer('coin-bar').objects;
         
         for (const coin of coinObjects) {
-            console.log(coin)
+            console.log("Coin: ", coin)
             const flagCoordinates = this.scene.tileset.texCoordinates[coin.gid-1]; // 962 is the tile index in tiled for the flag
 
             this.scene = scene;
             const sprt = this.scene.add.tileSprite(coin.x, coin.y-16, 16, 16, 'tiles')
                 .setOrigin(0, 0)
-               // .setScale(1.5)
                 .setTilePosition(flagCoordinates.x, flagCoordinates.y);
             sprt.texture.setFilter(undefined)
 
             this.coins.add(sprt)
-
-            //this.scene.map.createFromTiles(coin.gid, null, {key: 'tiles'}, this.scene)
-            // this.coins.create(coin.x, coin.y)
-            //     .setOrigin(0)
-            //     .setDepth(-1);
         }
 
-        // --- Or ---
-        // const coinSprites = this.scene.map.createFromObjects('coin');
+        console.log("this.scene.barItemTileset: ", this.scene.barItemTileset)
+        const gidOffset = 5213
 
-        // for (const coin of coinSprites) {
-        //     console.log(coin)
-        //     // coin.setTexture('atlas')
-        //     //     .setScale(1) // setTexture resets the scale to .5 so this is needed
-        //     //     .setOrigin(0)
-        //     //     .setDepth(-1);
-            
-        //     this.coins.add(coin);
-        // }
+        for (const coin of coinBarObjects) {
+            const flagCoordinates = this.scene.barItemTileset.texCoordinates[coin.gid-gidOffset]; // 962 is the tile index in tiled for the flag
+            console.log("Coin-bar-item: ", coin, ", tile: ", flagCoordinates, ", id: ", coin.gid-gidOffset)
+
+            this.scene = scene;
+            const sprt = this.scene.add.tileSprite(coin.x, coin.y-16, 16, 16, 'bar-items')
+                .setOrigin(0, 0)
+                .setTilePosition(flagCoordinates.x, flagCoordinates.y);
+            sprt.texture.setFilter(undefined)
+
+            this.coins.add(sprt)
+        }
     }
 
     collideWith(gameObject) {
