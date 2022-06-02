@@ -83,11 +83,12 @@ class Game extends Phaser.Scene {
         this.platform.setCollisionByExclusion(noCollisionTiles, true);
         this.ship.setCollisionByExclusion(noCollisionTiles, true);
 
+        this.staticObjects = new StaticObjects(this)
+        
         this.player = new Player(this, 60, 310).collideWith(this.platform);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
-        this.staticObjects = new StaticObjects(this)
         this.debugger = new Debugger(this);
 
         // const loadTileSprite = (imageName, variableName) => {
