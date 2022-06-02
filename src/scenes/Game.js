@@ -72,6 +72,8 @@ class Game extends Phaser.Scene {
         this.barTileset = this.map.addTilesetImage('bar-tiles', 'bar-Tiles');
         this.barItemTileset = this.map.addTilesetImage('bar-items-tileset', 'bar-items');
 
+        this.map.createStaticLayer('background-background', this.barTileset, 0, -16);
+
         this.platform = this.map.createStaticLayer('platform', this.tileset, 0, 0);
         this.ship = this.map.createStaticLayer('ship', this.tileset, 0, 0);
 
@@ -84,8 +86,8 @@ class Game extends Phaser.Scene {
         this.ship.setCollisionByExclusion(noCollisionTiles, true);
 
         this.staticObjects = new StaticObjects(this)
-        
-        this.player = new Player(this, 60, 310).collideWith(this.platform);
+
+        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
