@@ -1,4 +1,5 @@
 import Player from '../gameObjects/Player'
+import Princess from '../gameObjects/Princess'
 import Debugger from '../gameObjects/Debugger'
 import Goomba from '../gameObjects/Goomba'
 import Coin from '../gameObjects/Coin'
@@ -24,6 +25,7 @@ class Game extends Phaser.Scene {
         this.load.image('bar-items', './assets/bar-2-tiles.png');
         this.load.tilemapTiledJSON('map', './assets/map.json');
         this.load.atlas('atlas', './assets/mario-atlas.png','./assets/mario-atlas.json');
+        this.load.atlas('atlasP', './assets/princess-atlas-2.png','./assets/princess_atlas_name.json');
 
         this.isDay = "day" 
         this.load.image(`background-${this.isDay}-1`, `./assets/background-${this.isDay}-1.png`)
@@ -87,9 +89,10 @@ class Game extends Phaser.Scene {
 
         this.staticObjects = new StaticObjects(this)
 
-        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
+       this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
+        this.princess = new Princess(this, 80, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
-        this.coins = new Coin(this).collideWith(this.player.sprite);
+        this.coins = new Coin(this).collideWith(this.princess.sprite);
         this.flag = new Flag(this);
         this.debugger = new Debugger(this);
 
@@ -116,6 +119,7 @@ class Game extends Phaser.Scene {
     
     update() {
         this.player.update(this.inputs);
+        this.princess.update(this.inputs);
         this.goombas.update();
         this.coins.update();
         this.debugger.debuggerEnabled && this.debugger.update();

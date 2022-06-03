@@ -31,6 +31,31 @@ export default scene => {
         frameRate: 10
     });
 
+    // Princess
+    // Mario
+    scene.anims.create({
+        key: 'runP',
+        frames: scene.anims.generateFrameNames('atlasP', {
+            prefix: 'princess-atlas-2_',
+            start: 1,
+            end: 3,
+        }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+    scene.anims.create({
+        key: 'idleP',
+        frames: [{ key: 'atlasP', frame: 'princess-atlas-2_0' }],
+        frameRate: 10
+    });
+
+    scene.anims.create({
+        key: 'jumpP',
+        frames: [{ key: 'atlasP', frame: 'princess-atlas-2_4' }],
+        frameRate: 10
+    });
+
     // Goomba
     scene.anims.create({
         key: 'goombaRun',

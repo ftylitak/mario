@@ -1,4 +1,4 @@
-class Player {
+class Princess {
     constructor(scene, x, y, atlasName = 'atlas') {
         const useDeadZone = false;
 
@@ -6,7 +6,6 @@ class Player {
 
         // By using an object in tiled, you could also dynamically define the spawn point
         this.sprite = scene.physics.add.sprite(x, y, atlasName)
-            .setScale(1.5);
 
         this.sprite.setCollideWorldBounds(true);
         this.sprite.isDed = false;
@@ -32,26 +31,26 @@ class Player {
         if (input.left.isDown) {
             this.sprite.setVelocityX(-200).setFlipX(true);
             this.sprite.body.onFloor() && 
-            !this.sprite.isDed && this.sprite.play('run', true);
+            !this.sprite.isDed && this.sprite.play('runP', true);
 
             this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
         } else if (input.right.isDown) {
             this.sprite.setVelocityX(200).setFlipX(false);
             this.sprite.body.onFloor() &&
-            !this.sprite.isDed && this.sprite.play('run', true);
+            !this.sprite.isDed && this.sprite.play('runP', true);
         
             this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
         } else {
             this.sprite.setVelocityX(0);
             this.sprite.body.onFloor() &&
-            !this.sprite.isDed && this.sprite.play('idle', true);
+            !this.sprite.isDed && this.sprite.play('idleP', true);
         }
 
         if ((input.space.isDown 
                // && this.sprite.body.onFloor()
                 )) {
             this.sprite.setVelocityY(-350);
-            this.sprite.play('jump', true);
+            this.sprite.play('jumpP', true);
         }
     }
 
@@ -63,4 +62,4 @@ class Player {
     }
 }
 
-export default Player;
+export default Princess;
