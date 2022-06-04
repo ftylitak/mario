@@ -41,30 +41,31 @@ class Player {
 
     update(input) {
         if(this.reachedRebound) {
-            //going right
-            if(!this.sprite.flipX && this.sprite.x < 2400) {
-                this.sprite.setVelocityX(30)
-                this.sprite.play('run', true);
-            }
-            //going left
-            else if(this.sprite.flipX && this.sprite.x > 2400) {
-                this.sprite.play('run', true);
-                this.sprite.setVelocityX(-30)
-            }
-            else {
-                this.sprite.setVelocityX(0)
-
-                if(this.justReachedDanceFloor) {
+            if(this.justReachedDanceFloor) {
+                    //going right
+                if(!this.sprite.flipX && this.sprite.x < 2400) {
+                    this.sprite.setVelocityX(30)
+                    this.sprite.play('run', true);
+                }
+                //going left
+                else if(this.sprite.flipX && this.sprite.x > 2400) {
+                    this.sprite.play('run', true);
+                    this.sprite.setVelocityX(-30)
+                }
+                else {
+                    this.sprite.setVelocityX(0)
                     this.sprite.play('danceM', true);
                     this.sprite.setFlipX(false)
-                    this.justReachedDanceFloor = true
+                    this.justReachedDanceFloor = false
                 }
-                
+            }
+            else {
                 if(!this.sprite.anims.isPlaying) {
                     this.sprite.play('danceM', true);
                     this.sprite.setFlipX(!this.sprite.flipX)
                 }
             }
+           
             return 
         }
         if (input.left.isDown) {
