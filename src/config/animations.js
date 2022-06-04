@@ -56,6 +56,17 @@ export default scene => {
         frameRate: 10
     });
 
+    scene.anims.create({
+        key: 'danceP',
+        frames: scene.anims.generateFrameNames('atlasP', {
+            prefix: 'princess-atlas-2_',
+            start: 6,
+            end: 11,
+        }),
+        frameRate: 2,
+        repeat: 0
+    });
+
     // Goomba
     scene.anims.create({
         key: 'goombaRun',

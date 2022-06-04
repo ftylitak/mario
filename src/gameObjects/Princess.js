@@ -6,17 +6,22 @@ class Princess {
 
         // By using an object in tiled, you could also dynamically define the spawn point
         this.sprite = scene.physics.add.sprite(x, y, atlasName)
+        this.currentAnimation = undefined
+        this.flipX = false
 
-        this.sprite.setCollideWorldBounds(true);
-        this.sprite.isDed = false;
+        // this.sprite.setCollideWorldBounds(true);
+        // this.sprite.isDed = false;
 
-        scene.cameras.main
-            .setBounds(0, 0, scene.map.widthInPixels, scene.map.heightInPixels)
-            .startFollow(this.sprite);
+        // scene.cameras.main
+        //     .setBounds(0, 0, scene.map.widthInPixels, scene.map.heightInPixels)
+        //     .startFollow(this.sprite);
 
-        if (useDeadZone) {
-            scene.cameras.main.setDeadzone(scene.game.config.width / 4, scene.game.config.height)
-        }
+        // if (useDeadZone) {
+        //     scene.cameras.main.setDeadzone(scene.game.config.width / 4, scene.game.config.height)
+        // }
+
+        this.sprite.play('danceP', true)
+        console.log("this.sprite: ", this.sprite)
 
         return this;
     }
@@ -28,30 +33,37 @@ class Princess {
     }
 
     update(input) {
-        if (input.left.isDown) {
-            this.sprite.setVelocityX(-200).setFlipX(true);
-            this.sprite.body.onFloor() && 
-            !this.sprite.isDed && this.sprite.play('runP', true);
-
-            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
-        } else if (input.right.isDown) {
-            this.sprite.setVelocityX(200).setFlipX(false);
-            this.sprite.body.onFloor() &&
-            !this.sprite.isDed && this.sprite.play('runP', true);
+       // console.log(this.sprite.anims.isPLaying)
+        if(!this.sprite.anims.isPlaying) {
+            this.currentAnimation = this.sprite.play('danceP', true)
+            this.flipX = !this.flipX
+            this.sprite.setFlipX(this.flipX);
+        }
         
-            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
-        } else {
-            this.sprite.setVelocityX(0);
-            this.sprite.body.onFloor() &&
-            !this.sprite.isDed && this.sprite.play('idleP', true);
-        }
+        // if (input.left.isDown) {
+        //     this.sprite.setVelocityX(-200).setFlipX(true);
+        //     this.sprite.body.onFloor() && 
+        //     !this.sprite.isDed && this.sprite.play('runP', true);
 
-        if ((input.space.isDown 
-               // && this.sprite.body.onFloor()
-                )) {
-            this.sprite.setVelocityY(-350);
-            this.sprite.play('jumpP', true);
-        }
+        //     this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+        // } else if (input.right.isDown) {
+        //     this.sprite.setVelocityX(200).setFlipX(false);
+        //     this.sprite.body.onFloor() &&
+        //     !this.sprite.isDed && this.sprite.play('runP', true);
+        
+        //     this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+        // } else {
+        //     this.sprite.setVelocityX(0);
+        //     this.sprite.body.onFloor() &&
+        //     !this.sprite.isDed && this.sprite.play('idleP', true);
+        // }
+
+        // if ((input.space.isDown 
+        //        // && this.sprite.body.onFloor()
+        //         )) {
+        //     this.sprite.setVelocityY(-350);
+        //     this.sprite.play('jumpP', true);
+        // }
     }
 
     die() {

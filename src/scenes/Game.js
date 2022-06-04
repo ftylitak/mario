@@ -89,10 +89,11 @@ class Game extends Phaser.Scene {
 
         this.staticObjects = new StaticObjects(this)
 
-       this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
-        this.princess = new Princess(this, 80, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
+        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
+        //this.princess = new Princess(this, 2483, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
+        this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
-        this.coins = new Coin(this).collideWith(this.princess.sprite);
+        this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
         this.debugger = new Debugger(this);
 

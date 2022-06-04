@@ -6,7 +6,7 @@ class Player {
 
         // By using an object in tiled, you could also dynamically define the spawn point
         this.sprite = scene.physics.add.sprite(x, y, atlasName)
-            .setScale(1.5);
+            .setScale(1.75);
 
         this.sprite.setCollideWorldBounds(true);
         this.sprite.isDed = false;
