@@ -21,7 +21,14 @@ class Player {
 
         this.jumpEnabled = true
 
+        this.reachedRebound = false
+
         return this;
+    }
+
+    setReachedRebound() {
+        console.log("player reached rebound: ", this)
+        this.reachedRebound = true
     }
 
     collideWith(gameObject) {
@@ -31,6 +38,11 @@ class Player {
     }
 
     update(input) {
+        if(this.reachedRebound) {
+            this.sprite.play('danceM', true);
+            this.sprite.setVelocityX(0);
+            return 
+        }
         if (input.left.isDown) {
             this.sprite.setVelocityX(-200).setFlipX(true);
             this.sprite.body.onFloor() && 

@@ -1,8 +1,8 @@
 
 import increaseScore from '../ui/increaseScore'
 
-class Coin {
-    constructor(scene) {
+class Trigger {
+    constructor(scene, callback) {
         this.scene = scene;
         // Or you can simply say staticGroup, to make them immovable an not affected by gravity
         this.triggers = this.scene.physics.add.group({
@@ -24,6 +24,8 @@ class Coin {
 
             this.triggers.add(sprt)
         }
+        this.triggered = false
+        this.triggerCallback = callback
     }
 
     collideWith(gameObject) {
@@ -39,8 +41,13 @@ class Coin {
     }
 
     collect() {
-        console.log("triggered!")
+        if(!this.triggered) {
+            this.triggered = true
+            console.log("Trigger: before callback")
+            this.triggerCallback()
+            console.log("Trigger: after callback")
+        }
     }
 }
 
-export default Coin;
+export default Trigger;

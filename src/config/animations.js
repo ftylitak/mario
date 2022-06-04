@@ -31,8 +31,18 @@ export default scene => {
         frameRate: 10
     });
 
+    scene.anims.create({
+        key: 'danceM',
+        frames: scene.anims.generateFrameNames('atlas', {
+            prefix: 'mario-atlas_',
+            start: 18,
+            end: 23,
+        }),
+        frameRate: 3,
+        repeat: 0
+    });
+
     // Princess
-    // Mario
     scene.anims.create({
         key: 'runP',
         frames: scene.anims.generateFrameNames('atlasP', {
