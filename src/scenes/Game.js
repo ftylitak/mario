@@ -90,29 +90,12 @@ class Game extends Phaser.Scene {
         this.staticObjects = new StaticObjects(this)
 
         this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
-        //this.princess = new Princess(this, 2483, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
-        this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
+        this.princess = new Princess(this, 2483, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
+        //this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
         this.debugger = new Debugger(this);
-
-        // const loadTileSprite = (imageName, variableName) => {
-        //     this[variableName] = this.add.tileSprite(0,
-        //         0, // this.height - this.cache.getImage(imageName).height,
-        //         0, // this.width,
-        //         800,// this.cache.getImage(imageName).height,
-        //         600,
-        //         imageName
-        //     ).setOrigin(0,0)
-        //     .setScrollFactor(0);
-        // }
-
-        // loadTileSprite('background-night-1', 'backgroundNight1') 
-        // loadTileSprite('background-night-2', 'backgroundNight2')
-        // loadTileSprite('background-night-3', 'backgroundNight3')
-        // loadTileSprite('background-night-4', 'backgroundNight4')
-        // loadTileSprite('background-night-5', 'backgroundNight5')
         
 
         this.inputs = this.input.keyboard.createCursorKeys();
@@ -124,11 +107,6 @@ class Game extends Phaser.Scene {
         this.goombas.update();
         this.coins.update();
         this.debugger.debuggerEnabled && this.debugger.update();
-
-        // this.backgroundNight2.tilePositionX -= 0.05;
-        // this.backgroundNight3.tilePositionX -= 0.1;
-        // this.backgroundNight4.tilePositionX -= 0.2;
-        // this.backgroundNight5.tilePositionX -= 0.3;
     }
 }
 

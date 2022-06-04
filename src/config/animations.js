@@ -57,11 +57,32 @@ export default scene => {
     });
 
     scene.anims.create({
-        key: 'danceP',
+        key: 'danceP_Front',
         frames: scene.anims.generateFrameNames('atlasP', {
             prefix: 'princess-atlas-2_',
             start: 6,
             end: 11,
+        }),
+        frameRate: 2,
+        repeat: 0
+    });
+    scene.anims.create({
+        key: 'danceP_Back',
+        frames: scene.anims.generateFrameNames('atlasP', {
+            prefix: 'princess-atlas-2_',
+            start: 8,
+            end: 6,
+        }),
+        frameRate: 2,
+        repeat: 0
+    });
+
+    scene.anims.create({
+        key: 'danceP_special',
+        frames: scene.anims.generateFrameNames('atlasP', {
+            prefix: 'princess-atlas-2_',
+            start: 12,
+            end: 14,
         }),
         frameRate: 2,
         repeat: 0

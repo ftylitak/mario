@@ -20,8 +20,10 @@ class Princess {
         //     scene.cameras.main.setDeadzone(scene.game.config.width / 4, scene.game.config.height)
         // }
 
-        this.sprite.play('danceP', true)
-        console.log("this.sprite: ", this.sprite)
+        this.currentAnimation = 'danceP_Front'
+        this.currentAnimation = this.sprite.play(this.currentAnimation, true)
+
+        this.animationCircleCnt = 0
 
         return this;
     }
@@ -35,9 +37,21 @@ class Princess {
     update(input) {
        // console.log(this.sprite.anims.isPLaying)
         if(!this.sprite.anims.isPlaying) {
-            this.currentAnimation = this.sprite.play('danceP', true)
+            // if(this.currentAnimation === 'danceP_Front')
+            //     this.currentAnimation = 'danceP_Back'
+            // if(this.currentAnimation === 'danceP_Back') {
+            //     this.currentAnimation = 'danceP_Front'
+            //     this.flipX = !this.flipX
+            // }
             this.flipX = !this.flipX
             this.sprite.setFlipX(this.flipX);
+            if(this.animationCircleCnt  === 3) {
+                this.currentAnimation = this.sprite.play('danceP_special', true)
+                this.animationCircleCnt = -1
+            }
+            else
+                this.currentAnimation = this.sprite.play('danceP_Front', true)
+            this.animationCircleCnt += 1
         }
         
         // if (input.left.isDown) {

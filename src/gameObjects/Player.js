@@ -19,6 +19,8 @@ class Player {
             scene.cameras.main.setDeadzone(scene.game.config.width / 4, scene.game.config.height)
         }
 
+        this.jumpEnabled = true
+
         return this;
     }
 
@@ -47,12 +49,16 @@ class Player {
             !this.sprite.isDed && this.sprite.play('idle', true);
         }
 
-        if ((input.space.isDown 
+        if (input.space.isDown && this.jumpEnabled
                // && this.sprite.body.onFloor()
-                )) {
+                ) {
             this.sprite.setVelocityY(-350);
             this.sprite.play('jump', true);
+            this.jumpEnabled = false
         }
+
+        if (!input.space.isDown)
+            this.jumpEnabled = true
     }
 
     die() {
