@@ -4,6 +4,7 @@ import Debugger from '../gameObjects/Debugger'
 import Goomba from '../gameObjects/Goomba'
 import Coin from '../gameObjects/Coin'
 import StaticObjects from '../gameObjects/StaticObjects'
+import Trigger from '../gameObjects/Trigger'
 import Flag from '../gameObjects/Flag'
 
 import tiles from '../config/tiles'
@@ -37,6 +38,9 @@ class Game extends Phaser.Scene {
         this.load.on('complete', () => {
             generateAnimations(this);
         });
+
+        this.overlapCollider = undefined
+        this.overlapTriggered = false;
     }
 
     create() {
@@ -90,14 +94,14 @@ class Game extends Phaser.Scene {
 
         this.staticObjects = new StaticObjects(this)
 
-        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship);
+        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship)
         this.princess = new Princess(this, 2483, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         //this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
         this.flag = new Flag(this);
-        this.debugger = new Debugger(this);
-        
+        this.debugger = new Debugger(this); 
+        this.triggers = new Trigger(this).collideWith(this.player.sprite);
 
         this.inputs = this.input.keyboard.createCursorKeys();
     }
@@ -108,6 +112,10 @@ class Game extends Phaser.Scene {
         this.goombas.update();
         this.coins.update();
         this.debugger.debuggerEnabled && this.debugger.update();
+    }
+
+    trigger(){
+        console.log("triggered!")
     }
 }
 

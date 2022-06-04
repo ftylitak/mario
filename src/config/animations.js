@@ -63,7 +63,7 @@ export default scene => {
             start: 6,
             end: 11,
         }),
-        frameRate: 2,
+        frameRate: 3,
         repeat: 0
     });
     scene.anims.create({
@@ -73,7 +73,7 @@ export default scene => {
             start: 8,
             end: 6,
         }),
-        frameRate: 2,
+        frameRate: 3,
         repeat: 0
     });
 
