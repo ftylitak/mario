@@ -74,7 +74,8 @@ class Game extends Phaser.Scene {
         this.barTileset = this.map.addTilesetImage('bar-tiles', 'bar-Tiles');
         this.barItemTileset = this.map.addTilesetImage('bar-items-tileset', 'bar-items');
 
-        this.map.createStaticLayer('background-background', this.barTileset, 0, -16);
+        this.map.createStaticLayer('background-lvl2-bar', this.barTileset, 0, -16);
+        this.map.createStaticLayer('background-lvl2-map', this.tileset, 0, 0);
 
         this.platform = this.map.createStaticLayer('platform', this.tileset, 0, 0);
         this.ship = this.map.createStaticLayer('ship', this.tileset, 0, 0);
