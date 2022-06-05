@@ -3,7 +3,8 @@ class GameState {
     static StateJustReachedDanceFloor = "justReachedDanceFloor"
     static StateReboundDancing = "reboundDancing"
     static StateHeadingToShip = "headingToShip"
-    static StateOnShip = "onShip"
+    static StateOnShipMario = "onShipMario"
+    static StateOnShipPrincess = "onShipPrincess"
     static StateReachedCrete = "reachedCrete"
     static StateFinale = "finale"
 
@@ -12,7 +13,8 @@ class GameState {
         GameState.StateJustReachedDanceFloor,
         GameState.StateReboundDancing,
         GameState.StateHeadingToShip,
-        GameState.StateOnShip,
+        GameState.StateOnShipMario,
+        GameState.StateOnShipPrincess,
         GameState.StateReachedCrete,
         GameState.StateFinale,
     ]
@@ -25,6 +27,13 @@ class GameState {
 
     static goToNextState() {
         GameState.currentStateIndex++
+        console.log("new game state: ", GameState.getCurrentGameState())
+    }
+
+    static goToNextStateTimed(timeoutMs=3000) {
+        setTimeout(() => {
+            GameState.goToNextState()
+        }, timeoutMs);
     }
 }
 

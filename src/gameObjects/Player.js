@@ -24,6 +24,16 @@ class Player {
         this.jumpEnabled = true
 
         this.danceFloorPositionX = 2433
+        this.jumpTriggersX = [
+            2610,
+            2674,
+            2722,
+            2770,
+            2818,
+            2898
+        ]
+
+        this.shipPositionX = 3172
 
         console.log("player game state: ", GameState.getCurrentGameState())
 
@@ -83,6 +93,7 @@ class Player {
                 this.sprite.play('danceM', true);
                 this.sprite.setFlipX(false)
                 GameState.goToNextState()
+                GameState.goToNextStateTimed(5000)
             }
         }
         else if(GameState.getCurrentGameState() === GameState.StateReboundDancing) {
@@ -90,6 +101,30 @@ class Player {
                 this.sprite.play('danceM', true);
                 this.sprite.setFlipX(!this.sprite.flipX)
             }
+        }
+        else if(GameState.getCurrentGameState() === GameState.StateHeadingToShip) {
+            this.sprite.setVelocityX(70).setFlipX(false);
+
+            this.sprite.body.onFloor() && this.sprite.play('run', true);
+        
+            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+
+            if(this.jumpTriggersX.includes(this.sprite.x) && this.jumpEnabled) {
+                this.sprite.setVelocityY(-350);
+                this.sprite.play('jump', true);
+                this.jumpEnabled = false
+            }
+            else this.jumpEnabled = true
+
+            if(this.sprite.x >= this.shipPositionX) {
+                this.sprite.setVelocityX(0);
+                GameState.goToNextState()
+            }
+
+            console.log("Mario x: ", this.sprite.x)
+        }
+        else if(GameState.getCurrentGameState() === GameState.StateOnShipMario) {
+            this.sprite.play('idle', true);
         }
     }
 

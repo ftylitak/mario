@@ -31,6 +31,16 @@ class Princess {
         this.justReachedDanceFloor = true
         this.danceFloorPositionX = 2456
 
+        this.jumpTriggersX = [
+            2608,
+            2672,
+            2720,
+            2768,
+            2816,
+            2896
+        ]
+        this.shipPositionX = 3231
+
         return this;
     }
 
@@ -49,6 +59,28 @@ class Princess {
         GameState.getCurrentGameState() === GameState.StateJustReachedDanceFloor || 
         GameState.getCurrentGameState() === GameState.StateReboundDancing) {
             this.danceRebound()
+        }
+        else if(GameState.getCurrentGameState() === GameState.StateHeadingToShip || 
+                 GameState.getCurrentGameState() === GameState.StateOnShipMario) {
+            console.log("Princess x: ", this.sprite.x)
+            this.sprite.setVelocityX(70).setFlipX(false);
+
+            this.sprite.body.onFloor() && this.sprite.play('runP', true);
+        
+            if(this.jumpTriggersX.includes(this.sprite.x) && this.jumpEnabled) {
+                this.sprite.setVelocityY(-350);
+                this.sprite.play('jumpP', true);
+                this.jumpEnabled = false
+            }
+            else this.jumpEnabled = true
+
+            if(this.sprite.x >= this.shipPositionX) {
+                this.sprite.setVelocityX(0);
+                GameState.goToNextState()
+            }
+        }
+        else if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
+            this.sprite.play('idleP', true);
         }
     }
 
