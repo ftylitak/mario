@@ -1,8 +1,7 @@
-
-import increaseScore from '../ui/increaseScore'
+import GameState from '../gameObjects/GameState'
 
 class Trigger {
-    constructor(scene, callback) {
+    constructor(scene) {
         this.scene = scene;
         // Or you can simply say staticGroup, to make them immovable an not affected by gravity
         this.triggers = this.scene.physics.add.group({
@@ -25,7 +24,6 @@ class Trigger {
             this.triggers.add(sprt)
         }
         this.triggered = false
-        this.triggerCallback = callback
     }
 
     collideWith(gameObject) {
@@ -35,17 +33,12 @@ class Trigger {
     }
 
     update() {
-        // for (const trigger of this.triggers.children.entries) {
-        //     trigger.play('rotate', true);
-        // }
     }
 
     collect() {
         if(!this.triggered) {
             this.triggered = true
-            console.log("Trigger: before callback")
-            this.triggerCallback()
-            console.log("Trigger: after callback")
+            GameState.goToNextState()
         }
     }
 }

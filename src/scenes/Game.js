@@ -5,7 +5,7 @@ import Goomba from '../gameObjects/Goomba'
 import Coin from '../gameObjects/Coin'
 import StaticObjects from '../gameObjects/StaticObjects'
 import Trigger from '../gameObjects/Trigger'
-import Flag from '../gameObjects/Flag'
+import GameState from '../gameObjects/GameState'
 
 import tiles from '../config/tiles'
 import generateAnimations from '../config/animations'
@@ -96,13 +96,12 @@ class Game extends Phaser.Scene {
 
         this.player = new Player(this, 2070, 210).collideWith(this.platform).collideWith(this.ship)
         //this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship)
-        this.princess = new Princess(this, 2483, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
+        this.princess = new Princess(this, 2462, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         //this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
-        this.flag = new Flag(this);
         this.debugger = new Debugger(this); 
-        this.triggers = new Trigger(this, this.player.setReachedRebound.bind(this.player)).collideWith(this.player.sprite);
+        this.triggers = new Trigger(this).collideWith(this.player.sprite);
 
         this.inputs = this.input.keyboard.createCursorKeys();
     }

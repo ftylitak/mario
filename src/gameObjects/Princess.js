@@ -1,3 +1,5 @@
+import GameState from '../gameObjects/GameState'
+
 class Princess {
     constructor(scene, x, y, atlasName = 'atlas') {
         const useDeadZone = false;
@@ -25,7 +27,15 @@ class Princess {
 
         this.animationCircleCnt = 0
 
+        this.marioReachRebound = false
+        this.justReachedDanceFloor = true
+        this.danceFloorPositionX = 2456
+
         return this;
+    }
+
+    setMarioReachedRebound() {
+        this.marioReachRebound = true
     }
 
     collideWith(gameObject) {
@@ -35,8 +45,15 @@ class Princess {
     }
 
     update(input) {
-       // console.log(this.sprite.anims.isPLaying)
-        if(!this.sprite.anims.isPlaying) {
+        if(GameState.getCurrentGameState() === GameState.StateSearchingPrincess ||
+        GameState.getCurrentGameState() === GameState.StateJustReachedDanceFloor || 
+        GameState.getCurrentGameState() === GameState.StateReboundDancing) {
+            this.danceRebound()
+        }
+    }
+
+    danceRebound() {
+        if(!this.sprite.anims.isPlaying || this.sprite.anims.currentAnim.key === 'runP') {
             // if(this.currentAnimation === 'danceP_Front')
             //     this.currentAnimation = 'danceP_Back'
             // if(this.currentAnimation === 'danceP_Back') {
@@ -53,31 +70,6 @@ class Princess {
                 this.currentAnimation = this.sprite.play('danceP_Front', true)
             this.animationCircleCnt += 1
         }
-        
-        // if (input.left.isDown) {
-        //     this.sprite.setVelocityX(-200).setFlipX(true);
-        //     this.sprite.body.onFloor() && 
-        //     !this.sprite.isDed && this.sprite.play('runP', true);
-
-        //     this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
-        // } else if (input.right.isDown) {
-        //     this.sprite.setVelocityX(200).setFlipX(false);
-        //     this.sprite.body.onFloor() &&
-        //     !this.sprite.isDed && this.sprite.play('runP', true);
-        
-        //     this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
-        // } else {
-        //     this.sprite.setVelocityX(0);
-        //     this.sprite.body.onFloor() &&
-        //     !this.sprite.isDed && this.sprite.play('idleP', true);
-        // }
-
-        // if ((input.space.isDown 
-        //        // && this.sprite.body.onFloor()
-        //         )) {
-        //     this.sprite.setVelocityY(-350);
-        //     this.sprite.play('jumpP', true);
-        // }
     }
 
     die() {
