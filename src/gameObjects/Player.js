@@ -33,6 +33,7 @@ class Player {
             2898
         ]
 
+        this.maxShipPosition = 3240
         this.shipPositionX = 3172
         this.islandPosition = 4145
 
@@ -56,7 +57,10 @@ class Player {
 
                // this.alignSceneToPlayer()
             } else if (input.right.isDown) {
-                this.sprite.setVelocityX(200).setFlipX(false);
+                if(this.sprite.x < this.maxShipPosition)
+                    this.sprite.setVelocityX(200).setFlipX(false);
+                else
+                    this.sprite.setVelocityX(0).setFlipX(false);
                 this.sprite.body.onFloor() &&
                 !this.sprite.isDed && this.sprite.play('run', true);
             
