@@ -40,6 +40,7 @@ class Princess {
             2896
         ]
         this.shipPositionX = 3231
+        this.islandPosition = 4190
 
         return this;
     }
@@ -62,7 +63,6 @@ class Princess {
         }
         else if(GameState.getCurrentGameState() === GameState.StateHeadingToShip || 
                  GameState.getCurrentGameState() === GameState.StateOnShipMario) {
-            console.log("Princess x: ", this.sprite.x)
             this.sprite.setVelocityX(70).setFlipX(false);
 
             this.sprite.body.onFloor() && this.sprite.play('runP', true);
@@ -81,6 +81,18 @@ class Princess {
         }
         else if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
             this.sprite.play('idleP', true);
+            //this.sprite.setVelocityX(60).setFlipX(false);
+        }
+        else if (GameState.getCurrentGameState() === GameState.StateReachedCrete) {
+            this.sprite.setVelocityX(70).setFlipX(false);
+            this.sprite.play('runP', true);
+            console.log("Princess x: ", this.sprite.x)
+
+            if(this.sprite.x >= this.islandPosition) {
+                this.sprite.setVelocityX(0).setFlipX(true);
+                this.sprite.play('idleP', true);
+                GameState.goToNextState()
+            }
         }
     }
 

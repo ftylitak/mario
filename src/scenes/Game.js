@@ -24,6 +24,7 @@ class Game extends Phaser.Scene {
         this.load.image('tiles', './assets/tiles.png');
         this.load.image('bar-Tiles', './assets/bar-Tiles.png');
         this.load.image('bar-items', './assets/bar-2-tiles.png');
+        this.load.image('beach-items', './assets/beach_tileset.png');
         this.load.tilemapTiledJSON('map', './assets/map.json');
         this.load.atlas('atlas', './assets/mario-atlas.png','./assets/mario-atlas.json');
         this.load.atlas('atlasP', './assets/princess-atlas-2.png','./assets/princess_atlas_name.json');
@@ -77,6 +78,7 @@ class Game extends Phaser.Scene {
         this.tileset = this.map.addTilesetImage('map-tileset', 'tiles');
         this.barTileset = this.map.addTilesetImage('bar-tiles', 'bar-Tiles');
         this.barItemTileset = this.map.addTilesetImage('bar-items-tileset', 'bar-items');
+        this.beachTileset = this.map.addTilesetImage('beach-tileset', 'beach-items');
 
         this.map.createStaticLayer('background-lvl2-bar', this.barTileset, 0, -16);
         this.map.createStaticLayer('background-lvl2-map', this.tileset, 0, 0);
@@ -85,6 +87,8 @@ class Game extends Phaser.Scene {
         this.ship = this.map.createStaticLayer('ship', this.tileset, 0, 0);
 
         this.map.createStaticLayer('background', this.tileset, 0, 0);
+        this.map.createStaticLayer('beachBar', this.beachTileset, 0, 0);
+        this.map.createStaticLayer('beachBar-foreground', this.beachTileset, 0, 0);
         this.map.createStaticLayer('background-bar-tiles', this.barTileset, 0, -16);
         this.map.createStaticLayer('background-bar-tiles-foreground', this.barTileset, 0, -16);
         this.map.createStaticLayer('background-bar-item-tiles', this.barItemTileset, 0, 0);
@@ -95,7 +99,7 @@ class Game extends Phaser.Scene {
         this.staticObjects = new StaticObjects(this)
 
         //this.player = new Player(this, 2070, 210).collideWith(this.platform).collideWith(this.ship)
-        this.player = new Player(this, 60, 310).collideWith(this.platform).collideWith(this.ship)
+        this.player = new Player(this, 90, 310).collideWith(this.platform).collideWith(this.ship)
         this.princess = new Princess(this, 2462, 430, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         //this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
@@ -104,14 +108,31 @@ class Game extends Phaser.Scene {
         this.triggers = new Trigger(this).collideWith(this.player.sprite);
 
         this.inputs = this.input.keyboard.createCursorKeys();
+
+        this.shipTargetX = 540
     }
     
-    update() {
+    update(time, delta) {
         this.player.update(this.inputs);
         this.princess.update(this.inputs);
         this.goombas.update();
         this.coins.update();
         this.debugger.debuggerEnabled && this.debugger.update();
+
+        if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
+            this.ship.x += 1;
+    
+            let speedCorrection = (1000/60)/delta;
+            this.player.sprite.setVelocityX(60 * speedCorrection )
+            this.princess.sprite.setVelocityX(60 * speedCorrection )
+           // this.player.alignSceneToPlayer()
+
+            if(this.ship.x >= this.shipTargetX) {
+                this.player.sprite.setVelocityX(0)
+                this.princess.sprite.setVelocityX(0)
+                GameState.goToNextState()
+            }
+        }
     }
 
     trigger(){

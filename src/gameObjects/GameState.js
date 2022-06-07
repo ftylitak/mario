@@ -6,6 +6,7 @@ class GameState {
     static StateOnShipMario = "onShipMario"
     static StateOnShipPrincess = "onShipPrincess"
     static StateReachedCrete = "reachedCrete"
+    static StatePrincessAtIslandPosition = "princessAtIslandPosition"
     static StateFinale = "finale"
 
     static scenarioStates = [
@@ -16,6 +17,7 @@ class GameState {
         GameState.StateOnShipMario,
         GameState.StateOnShipPrincess,
         GameState.StateReachedCrete,
+        GameState.StatePrincessAtIslandPosition,
         GameState.StateFinale,
     ]
 

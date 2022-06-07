@@ -34,6 +34,7 @@ class Player {
         ]
 
         this.shipPositionX = 3172
+        this.islandPosition = 4145
 
         console.log("player game state: ", GameState.getCurrentGameState())
 
@@ -53,13 +54,13 @@ class Player {
                 this.sprite.body.onFloor() && 
                 !this.sprite.isDed && this.sprite.play('run', true);
 
-                this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+               // this.alignSceneToPlayer()
             } else if (input.right.isDown) {
                 this.sprite.setVelocityX(200).setFlipX(false);
                 this.sprite.body.onFloor() &&
                 !this.sprite.isDed && this.sprite.play('run', true);
             
-                this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+                //this.alignSceneToPlayer()
             } else {
                 this.sprite.setVelocityX(0);
                 this.sprite.body.onFloor() &&
@@ -107,7 +108,7 @@ class Player {
 
             this.sprite.body.onFloor() && this.sprite.play('run', true);
         
-            this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
+            //this.alignSceneToPlayer()
 
             if(this.jumpTriggersX.includes(this.sprite.x) && this.jumpEnabled) {
                 this.sprite.setVelocityY(-350);
@@ -120,20 +121,39 @@ class Player {
                 this.sprite.setVelocityX(0);
                 GameState.goToNextState()
             }
-
-            console.log("Mario x: ", this.sprite.x)
         }
         else if(GameState.getCurrentGameState() === GameState.StateOnShipMario) {
             this.sprite.play('idle', true);
         }
+        else if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
+            this.sprite.play('idle', true);
+            //this.sprite.setVelocityX(60).setFlipX(false);
+        }
+        else if (GameState.getCurrentGameState() === GameState.StateReachedCrete || 
+        GameState.getCurrentGameState() === GameState.StatePrincessAtIslandPosition) {
+            this.sprite.setVelocityX(70).setFlipX(false);
+            this.sprite.play('run', true);
+            console.log("Mario x: ", this.sprite.x)     
+            
+            if(this.sprite.x >= this.islandPosition) {
+                this.sprite.setVelocityX(0).setFlipX(false);
+                this.sprite.play('idle', true);
+                GameState.goToNextState()
+            }
+        }
+        this.alignSceneToPlayer()
     }
 
-    die() {
-        this.sprite.isDed = true;
-        this.sprite.setVelocity(0, -350);
-        this.sprite.play('die', true);
-        this.sprite.setCollideWorldBounds(false);
+    alignSceneToPlayer() {
+        this.scene.physics.world.bounds.setPosition(this.scene.cameras.main.worldView.x, 0);
     }
+
+    // die() {
+    //     this.sprite.isDed = true;
+    //     this.sprite.setVelocity(0, -350);
+    //     this.sprite.play('die', true);
+    //     this.sprite.setCollideWorldBounds(false);
+    // }
 }
 
 export default Player;
