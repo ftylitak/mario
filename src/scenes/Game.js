@@ -27,7 +27,7 @@ class Game extends Phaser.Scene {
         this.load.image('beach-items', './assets/beach_tileset.png');
         this.load.tilemapTiledJSON('map', './assets/map.json');
         this.load.atlas('atlas', './assets/mario-atlas.png','./assets/mario-atlas.json');
-        this.load.atlas('atlasP', './assets/princess-atlas-2.png','./assets/princess_atlas_name.json');
+        this.load.atlas('atlasP', './assets/princess-atlas-2-alt.png','./assets/princess_atlas_name.json');
 
         this.isDay = "day" 
         this.load.image(`background-${this.isDay}-1`, `./assets/background-${this.isDay}-1.png`)
