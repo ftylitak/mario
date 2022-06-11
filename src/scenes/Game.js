@@ -110,6 +110,8 @@ class Game extends Phaser.Scene {
         this.inputs = this.input.keyboard.createCursorKeys();
 
         this.shipTargetX = 540
+        this.shipGoesDown = true
+
     }
     
     update(time, delta) {
@@ -132,6 +134,15 @@ class Game extends Phaser.Scene {
                 this.princess.sprite.setVelocityX(0)
                 GameState.goToNextState()
             }
+            console.log(`ship x: ${this.ship.x}, y: ${this.ship.y}`)
+            if(this.ship.x % 8 === 0 && (this.ship.x < 485 || this.ship.y !== 0 )) {
+                this.ship.y += this.shipGoesDown ? 1 : -1
+            } 
+            if(this.ship.x % 40 === 0){
+                this.shipGoesDown = !this.shipGoesDown
+            }
+
+            this.shipYState++
         }
     }
 
