@@ -12,7 +12,7 @@ class StaticObjects {
 
         // You could also use the same object layer and differentiate between different objects by custom properties
         const coinBarObjects = this.scene.map.getObjectLayer('simple-bar-items').objects;
-        const gidOffset = 5213
+        const gidOffset = 5320
         
         for (const coin of coinBarObjects) {
             console.log("static object: ", coin)

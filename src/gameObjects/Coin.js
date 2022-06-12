@@ -28,7 +28,7 @@ class Coin {
         }
 
         console.log("this.scene.barItemTileset: ", this.scene.barItemTileset)
-        const gidOffset = 5213
+        const gidOffset = 5320
 
         for (const coin of coinBarObjects) {
             const flagCoordinates = this.scene.barItemTileset.texCoordinates[coin.gid-gidOffset]; // 962 is the tile index in tiled for the flag

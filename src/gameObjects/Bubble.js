@@ -1,3 +1,4 @@
+import GameState from '../gameObjects/GameState'
 
 class Bubble {
     constructor(scene) {
@@ -76,6 +77,8 @@ class Bubble {
             this.sprites.children.each(sprt => {
                 sprt.setVisible(false)
             }, this)
+
+            GameState.goToNextState()
         }, 6000)
         this.animationStarted = true
     }
@@ -85,18 +88,18 @@ class Bubble {
             this.smallBubble.forEach(tile => {
                 tile.setVisible(true)
             })
-        }, 1000)
+        }, 500)
         setTimeout(()=> {
             this.mediumBubble.forEach(tile => {
                 tile.setVisible(true)
             })
-        }, 1500)
+        }, 850)
 
         setTimeout(()=> {
             this.bigBubble.forEach(tile => {
                 tile.setVisible(true)
             })
-        }, 2000)
+        }, 1200)
         setTimeout(()=> {
             this.graphic.forEach(tile => {
                 tile.setVisible(true)
@@ -110,7 +113,7 @@ class Bubble {
                 else 
                     clearInterval(this.repeatedTimer)
             },500)
-        }, 2500)
+        }, 1600)
     }
 
     update() {

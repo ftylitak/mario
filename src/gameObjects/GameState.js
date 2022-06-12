@@ -1,4 +1,5 @@
 class GameState {
+    static StateInitialBubble = "initialBubble"
     static StateSearchingPrincess = "searchingPrincess"
     static StateJustReachedDanceFloor = "justReachedDanceFloor"
     static StateReboundDancing = "reboundDancing"
@@ -10,6 +11,7 @@ class GameState {
     static StateFinale = "finale"
 
     static scenarioStates = [
+        GameState.StateInitialBubble,
         GameState.StateSearchingPrincess,
         GameState.StateJustReachedDanceFloor,
         GameState.StateReboundDancing,
