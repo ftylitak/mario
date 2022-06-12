@@ -6,9 +6,12 @@ import Coin from '../gameObjects/Coin'
 import StaticObjects from '../gameObjects/StaticObjects'
 import Trigger from '../gameObjects/Trigger'
 import GameState from '../gameObjects/GameState'
+import Dialog from "../gameObjects/Dialog"
+import Bubbles from  "../gameObjects/Bubble"
 
 import tiles from '../config/tiles'
 import generateAnimations from '../config/animations'
+import Bubble from '../gameObjects/Bubble'
 
 class Game extends Phaser.Scene {
 
@@ -104,13 +107,20 @@ class Game extends Phaser.Scene {
         //this.princess = new Princess(this, 284, 310, 'atlasP').collideWith(this.platform).collideWith(this.ship);
         this.goombas = new Goomba(this).collideWith(this.platform);
         this.coins = new Coin(this).collideWith(this.player.sprite);
-        this.debugger = new Debugger(this); 
+       // this.debugger = new Debugger(this); 
         this.triggers = new Trigger(this).collideWith(this.player.sprite);
+        this.bubble = new Bubble(this)
+        this.bubble.startAnimation()
+
+        //this.dialog = new Dialog(this)
 
         this.inputs = this.input.keyboard.createCursorKeys();
 
         this.shipTargetX = 540
         this.shipGoesDown = true
+
+        // this.dialog.init();
+        // this.dialog.setText('που είναι η πριγκίπισσα??????', true);
 
     }
     
@@ -119,7 +129,7 @@ class Game extends Phaser.Scene {
         this.princess.update(this.inputs);
         this.goombas.update();
         this.coins.update();
-        this.debugger.debuggerEnabled && this.debugger.update();
+       // this.debugger.debuggerEnabled && this.debugger.update();
 
         if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
             this.ship.x += 1;

@@ -6,3 +6,7 @@ tilesets sources:
   * (paid) https://craftpix.net/product/bar-street-tileset-pixel-art-pack/
   * https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/
 * https://finalbossblues.itch.io/tf-beach-tileset
+
+useful links:
+
+* https://gamedevacademy.org/create-a-dialog-modal-plugin-in-phaser-3-part-1/
