@@ -44,6 +44,7 @@ class Game extends Phaser.Scene {
         this.load.image(`background-${this.isDay}-5`, `./assets/background-${this.isDay}-5.png`)
 
         this.load.audio('main', ['./assets/main.mp3']);
+        this.load.audio('jump', ['./assets/jump.wav'])
 
 
         this.load.on('complete', () => {

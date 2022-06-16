@@ -39,6 +39,8 @@ class Player {
 
         console.log("player game state: ", GameState.getCurrentGameState())
 
+        this.audioJump = this.scene.sound.add('jump');
+
         return this;
     }
 
@@ -74,6 +76,7 @@ class Player {
             if (input.space.isDown && this.jumpEnabled
                 // && this.sprite.body.onFloor()
                     ) {
+                this.audioJump.play()
                 this.sprite.setVelocityY(-350);
                 this.sprite.play('jump', true);
                 this.jumpEnabled = false
