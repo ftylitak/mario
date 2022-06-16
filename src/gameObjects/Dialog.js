@@ -75,8 +75,8 @@ class Dialog {
     // Reset the dialog
     if (this.text) this.text.destroy();
 
-    var x = this.padding + 10;
-    var y = this._getGameHeight() - this.windowHeight - this.padding + 10;
+    var x = this.padding + this.windowDimensions.x;
+    var y = this.windowDimensions.y - this.padding ;
     //var y = this._getGameHeight() - this.padding + 10;
 
     this.text = this.scene.make.text({
@@ -93,11 +93,11 @@ class Dialog {
   _createWindow() {
     var gameHeight = this._getGameHeight();
     var gameWidth = this._getGameWidth();
-    var windowDimensions = this._calculateWindowDimensions(gameWidth, gameHeight);
+    this.windowDimensions = this._calculateWindowDimensions(gameWidth, gameHeight);
     this.graphics = this.scene.add.graphics();
 
-    this._createOuterWindow(windowDimensions);
-    this._createInnerWindow(windowDimensions);
+    this._createOuterWindow(this.windowDimensions);
+    this._createInnerWindow(this.windowDimensions);
     this._createCloseModalButtonBorder();
     this._createCloseModalButton();
   }
@@ -114,8 +114,8 @@ class Dialog {
 
   // Calculates where to place the dialog window based on the game size
   _calculateWindowDimensions(width, height) {
-    var x = this.padding;
-    var y = height - this.windowHeight - this.padding;
+    var x = 38500//this.padding;
+    var y = 10//height - this.windowHeight - this.padding;
     var rectWidth = width - (this.padding * 2);
     var rectHeight = this.windowHeight;
     return {

@@ -13,6 +13,8 @@ import tiles from '../config/tiles'
 import generateAnimations from '../config/animations'
 import Bubble from '../gameObjects/Bubble'
 
+import Mark from "../gameObjects/Mark"
+
 class Game extends Phaser.Scene {
 
     constructor () {
@@ -112,15 +114,29 @@ class Game extends Phaser.Scene {
         this.bubble = new Bubble(this)
         this.bubble.startAnimation()
 
-        //this.dialog = new Dialog(this)
-
+        
         this.inputs = this.input.keyboard.createCursorKeys();
 
         this.shipTargetX = 540
         this.shipGoesDown = true
 
-        // this.dialog.init();
-        // this.dialog.setText('που είναι η πριγκίπισσα??????', true);
+        this.dialog = new Dialog(this)
+
+        this.finaleInitialized = false
+    }
+
+    moveMark(mark) {
+        if(mark.getTicks() % 4 === 0) {
+            mark.sprt.x += mark.markGoesRight ? 1 : -1
+        }
+
+        if(mark.getTicks() % 40 === 0){
+            mark.markGoesRight = !mark.markGoesRight
+        }
+
+        if(mark.getTicks() % 8 === 0) {
+            mark.sprt.y -= 1
+        }
 
     }
     
@@ -131,7 +147,25 @@ class Game extends Phaser.Scene {
         this.coins.update();
        // this.debugger.debuggerEnabled && this.debugger.update();
 
-        if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
+       if(GameState.getCurrentGameState() !== GameState.StateReboundDancing && this.mark1 && this.mark2) {
+            this.mark1.sprt.setVisible(false)
+            this.mark2.sprt.setVisible(false)
+       }
+
+       if(GameState.getCurrentGameState() === GameState.StateReboundDancing) {
+            if(!this.mark1 || !this.mark2) {
+                this.mark1 = new Mark(this, 2429)
+                this.mark2 = new Mark(this, 2452)
+            }
+            else {
+                this.mark1.update()
+                this.mark2.update()
+
+                this.moveMark(this.mark1)
+                this.moveMark(this.mark2)
+            }
+       }
+        else if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
             this.ship.x += 1;
     
             let speedCorrection = (1000/60)/delta;
@@ -153,6 +187,15 @@ class Game extends Phaser.Scene {
             }
 
             this.shipYState++
+        }
+        else if(GameState.getCurrentGameState() === GameState.StateFinale) {
+            if(!this.finaleInitialized) {
+                this.dialog.init();
+                this.dialog.setText(`
+                testmessage
+                `, true);
+                this.finaleInitialized = true
+            }
         }
     }
 
