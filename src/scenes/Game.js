@@ -45,7 +45,7 @@ class Game extends Phaser.Scene {
 
         this.load.audio('main', ['./assets/main.mp3']);
         this.load.audio('jump', ['./assets/jump.wav'])
-
+        this.load.audio('rebound', ['./assets/The_Cure-A_Forest_(8_bit).mp3'])
 
         this.load.on('complete', () => {
             generateAnimations(this);
@@ -130,8 +130,10 @@ class Game extends Phaser.Scene {
 
         this.finaleInitialized = false
 
-        this.music = this.sound.add('main');
-        this.music.play();
+        this.musicMain = this.sound.add('main');
+        this.musicRebound = this.sound.add('rebound');
+        this.musicMain.play();
+        this.musicRebound.play();
     }
 
     moveMark(mark) {
@@ -148,12 +150,29 @@ class Game extends Phaser.Scene {
         }
 
     }
+
+    syncAudio(playerPositionX) {
+        if(playerPositionX < 1930) {
+            if(!this.musicMain.isPlaying)
+                this.musicMain.resume()
+            if(this.musicRebound.isPlaying)
+                this.musicRebound.pause()
+        }
+        else {
+            if(this.musicMain.isPlaying)
+                this.musicMain.pause()
+            if(!this.musicRebound.isPlaying)
+                this.musicRebound.resume()
+        }
+    }
     
     update(time, delta) {
         this.player.update(this.inputs);
         this.princess.update(this.inputs);
         this.goombas.update();
         this.coins.update();
+
+        this.syncAudio(this.player.sprite.x)
        // this.debugger.debuggerEnabled && this.debugger.update();
 
        if(GameState.getCurrentGameState() !== GameState.StateReboundDancing && this.mark1 && this.mark2) {

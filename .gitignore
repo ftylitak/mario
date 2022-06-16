@@ -3,3 +3,4 @@
 build
 node_modules
 src/dialogText.js
+src/assets/audio
