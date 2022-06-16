@@ -1,0 +1,164 @@
+{
+    "frames": [
+        {
+            "filename": "dancersatlas_0",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_1",
+            "frame": {
+                "x": 16,
+                "y": 0,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_2",
+            "frame": {
+                "x": 32,
+                "y": 0,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_3",
+            "frame": {
+                "x": 48,
+                "y": 0,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_4",
+            "frame": {
+                "x": 0,
+                "y": 32,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_5",
+            "frame": {
+                "x": 16,
+                "y": 32,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_6",
+            "frame": {
+                "x": 32,
+                "y": 32,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_7",
+            "frame": {
+                "x": 48,
+                "y": 32,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_8",
+            "frame": {
+                "x": 0,
+                "y": 64,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_9",
+            "frame": {
+                "x": 16,
+                "y": 64,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_10",
+            "frame": {
+                "x": 32,
+                "y": 64,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dancersatlas_11",
+            "frame": {
+                "x": 48,
+                "y": 64,
+                "w": 16,
+                "h": 32
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Phaser3",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

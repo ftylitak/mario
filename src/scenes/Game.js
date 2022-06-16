@@ -15,6 +15,8 @@ import Bubble from '../gameObjects/Bubble'
 
 import Mark from "../gameObjects/Mark"
 
+import text from "../dialogText"
+
 class Game extends Phaser.Scene {
 
     constructor () {
@@ -40,6 +42,9 @@ class Game extends Phaser.Scene {
         this.load.image(`background-${this.isDay}-3`, `./assets/background-${this.isDay}-3.png`)
         this.load.image(`background-${this.isDay}-4`, `./assets/background-${this.isDay}-4.png`)
         this.load.image(`background-${this.isDay}-5`, `./assets/background-${this.isDay}-5.png`)
+
+        this.load.audio('main', ['./assets/main.mp3']);
+
 
         this.load.on('complete', () => {
             generateAnimations(this);
@@ -123,6 +128,9 @@ class Game extends Phaser.Scene {
         this.dialog = new Dialog(this)
 
         this.finaleInitialized = false
+
+        this.music = this.sound.add('main');
+        this.music.play();
     }
 
     moveMark(mark) {
@@ -191,9 +199,7 @@ class Game extends Phaser.Scene {
         else if(GameState.getCurrentGameState() === GameState.StateFinale) {
             if(!this.finaleInitialized) {
                 this.dialog.init();
-                this.dialog.setText(`
-                testmessage
-                `, true);
+                this.dialog.setText(text, true);
                 this.finaleInitialized = true
             }
         }

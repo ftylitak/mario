@@ -18,8 +18,8 @@ class Dialog {
         this.borderAlpha = opts.borderAlpha || 1;
         this.windowAlpha = opts.windowAlpha || 0.8;
         this.windowColor = opts.windowColor || 0x303030;
-        this.windowHeight = opts.windowHeight || 110;
-        this.padding = opts.padding || 32;
+        this.windowHeight = opts.windowHeight || 200;
+        this.padding = opts.padding || 16;
         this.closeBtnColor = opts.closeBtnColor || 'darkgoldenrod';
         this.dialogSpeed = opts.dialogSpeed || 2;
 
@@ -76,7 +76,7 @@ class Dialog {
     if (this.text) this.text.destroy();
 
     var x = this.padding + this.windowDimensions.x;
-    var y = this.windowDimensions.y - this.padding ;
+    var y = this.windowDimensions.y - this.padding  + 10 ;
     //var y = this._getGameHeight() - this.padding + 10;
 
     this.text = this.scene.make.text({
@@ -114,8 +114,8 @@ class Dialog {
 
   // Calculates where to place the dialog window based on the game size
   _calculateWindowDimensions(width, height) {
-    var x = 38500//this.padding;
-    var y = 10//height - this.windowHeight - this.padding;
+    var x = 3850
+    var y = 30
     var rectWidth = width - (this.padding * 2);
     var rectHeight = this.windowHeight;
     return {

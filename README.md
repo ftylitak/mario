@@ -7,6 +7,11 @@ tilesets sources:
   * https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/
 * https://finalbossblues.itch.io/tf-beach-tileset
 
+audio/music:
+* https://downloads.khinsider.com/game-soundtracks/album/super-mario-bros
+* https://themushroomkingdom.net/media/mb-nes/wav
+
 useful links:
 
 * https://gamedevacademy.org/create-a-dialog-modal-plugin-in-phaser-3-part-1/
+* https://phasertutorials.com/creating-a-phaser-3-template-part-2/
