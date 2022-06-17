@@ -42,6 +42,8 @@ class Coin {
 
             this.coins.add(sprt)
         }
+
+        this.soundCollect = scene.sound.add('blip');
     }
 
     collideWith(gameObject) {
@@ -60,6 +62,8 @@ class Coin {
         for (const coin of this.coins.children.entries) {
             if (!coin.body.touching.none) {
                 coin.body.setEnable(false);
+
+                this.soundCollect.play();
 
                 this.scene.tweens.add({
                     targets: coin,

@@ -104,7 +104,8 @@ class Player {
                 GameState.goToNextStateTimed(5000)
             }
         }
-        else if(GameState.getCurrentGameState() === GameState.StateReboundDancing) {
+        else if(GameState.getCurrentGameState() === GameState.StateReboundDancing || 
+        GameState.getCurrentGameState() === GameState.StateFinale) {
             if(!this.sprite.anims.isPlaying) {
                 this.sprite.play('danceM', true);
                 this.sprite.setFlipX(!this.sprite.flipX)

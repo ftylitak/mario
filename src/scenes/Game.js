@@ -46,6 +46,7 @@ class Game extends Phaser.Scene {
         this.load.audio('main', ['./assets/main.mp3']);
         this.load.audio('jump', ['./assets/jump.wav'])
         this.load.audio('rebound', ['./assets/The_Cure-A_Forest_(8_bit).mp3'])
+        this.load.audio('blip', ['./assets/blip.mp3'])
 
         this.load.on('complete', () => {
             generateAnimations(this);
@@ -149,6 +150,9 @@ class Game extends Phaser.Scene {
             mark.sprt.y -= 1
         }
 
+        if(mark.getTicks() % 150 === 0)
+            mark.sprt.setVisible(false)
+
     }
 
     syncAudio(playerPositionX) {
@@ -175,10 +179,10 @@ class Game extends Phaser.Scene {
         this.syncAudio(this.player.sprite.x)
        // this.debugger.debuggerEnabled && this.debugger.update();
 
-       if(GameState.getCurrentGameState() !== GameState.StateReboundDancing && this.mark1 && this.mark2) {
-            this.mark1.sprt.setVisible(false)
-            this.mark2.sprt.setVisible(false)
-       }
+    //    if(GameState.getCurrentGameState() !== GameState.StateReboundDancing && this.mark1 && this.mark2) {
+    //         this.mark1.sprt.setVisible(false)
+    //         this.mark2.sprt.setVisible(false)
+    //    }
 
        if(GameState.getCurrentGameState() === GameState.StateReboundDancing) {
             if(!this.mark1 || !this.mark2) {

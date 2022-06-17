@@ -58,7 +58,8 @@ class Princess {
     update(input) {
         if(GameState.getCurrentGameState() === GameState.StateSearchingPrincess ||
         GameState.getCurrentGameState() === GameState.StateJustReachedDanceFloor || 
-        GameState.getCurrentGameState() === GameState.StateReboundDancing) {
+        GameState.getCurrentGameState() === GameState.StateReboundDancing || 
+        GameState.getCurrentGameState() === GameState.StateFinale) {
             this.danceRebound()
         }
         else if(GameState.getCurrentGameState() === GameState.StateHeadingToShip || 
