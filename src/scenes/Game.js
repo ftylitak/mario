@@ -122,18 +122,6 @@ class Game extends Phaser.Scene {
         this.bubble = new Bubble(this)
         this.bubble.startAnimation()
 
-        this.dancers = [
-            new Dancer(this, 3840, 250, "atlasDancers", "luigiIdle", "", 4105)
-                .collideWith(this.platform)
-                .collideWith(this.ship),
-            new Dancer(this, 3860, 250, "atlasDancers", "mushIdle", "", 4265)
-                .collideWith(this.platform)
-                .collideWith(this.ship),
-            new Dancer(this, 3880, 250, "atlasDancers", "barioIdle", "", 4055)
-                .collideWith(this.platform)
-                .collideWith(this.ship)
-        ]
-
         this.inputs = this.input.keyboard.createCursorKeys()
 
         this.shipTargetX = 540
@@ -188,12 +176,6 @@ class Game extends Phaser.Scene {
         }
 
         this.syncAudio(this.player.sprite.x)
-        // this.debugger.debuggerEnabled && this.debugger.update();
-
-        //    if(GameState.getCurrentGameState() !== GameState.StateReboundDancing && this.mark1 && this.mark2) {
-        //         this.mark1.sprt.setVisible(false)
-        //         this.mark2.sprt.setVisible(false)
-        //    }
 
         if (GameState.getCurrentGameState() === GameState.StateReboundDancing) {
             if (!this.mark1 || !this.mark2) {
@@ -212,14 +194,12 @@ class Game extends Phaser.Scene {
             let speedCorrection = 1000 / 60 / delta
             this.player.sprite.setVelocityX(60 * speedCorrection)
             this.princess.sprite.setVelocityX(60 * speedCorrection)
-            // this.player.alignSceneToPlayer()
 
             if (this.ship.x >= this.shipTargetX) {
                 this.player.sprite.setVelocityX(0)
                 this.princess.sprite.setVelocityX(0)
                 GameState.goToNextState()
             }
-            console.log(`ship x: ${this.ship.x}, y: ${this.ship.y}`)
             if (this.ship.x % 8 === 0 && (this.ship.x < 485 || this.ship.y !== 0)) {
                 this.ship.y += this.shipGoesDown ? 1 : -1
             }
@@ -233,6 +213,18 @@ class Game extends Phaser.Scene {
                 this.dialog.init()
                 this.dialog.setText(text, true)
                 this.finaleInitialized = true
+
+                this.dancers = [
+                    new Dancer(this, 3687, 250, "atlasDancers", "luigiWalk", "luigiIdle", 4224)
+                        .collideWith(this.platform)
+                        .collideWith(this.ship),
+                    new Dancer(this, 3740, 250, "atlasDancers", "mushWalk", "mushIdle", 4255)
+                        .collideWith(this.platform)
+                        .collideWith(this.ship),
+                    new Dancer(this, 3812, 250, "atlasDancers", "barioWalk", "barioIdle", 4096)
+                        .collideWith(this.platform)
+                        .collideWith(this.ship)
+                ]
             }
         }
     }

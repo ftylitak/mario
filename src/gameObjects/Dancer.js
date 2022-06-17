@@ -11,13 +11,14 @@ class Dancer {
         this.currentAnimation = undefined
         this.flipX = false
 
-        this.currentAnimationName = walkAnimation
-        this.currentAnimation = this.sprite.play(this.currentAnimationName, true)
+        this.walkAnimationName = walkAnimation
+        this.currentAnimation = this.sprite.play(this.walkAnimationName, true)
 
         this.danceAnimationName = danceAnimation
 
         this.animationCircleCnt = 0
         this.targetX = targetX
+        this.reachedX = false
 
         return this
     }
@@ -33,6 +34,24 @@ class Dancer {
     }
 
     update() {
+        if (this.sprite.x < this.targetX) {
+            this.sprite.play(this.walkAnimationName, true)
+            this.sprite.setVelocityX(35)
+        } else {
+            if (!this.reachedX) {
+                this.reachedX = true
+                this.sprite.setVelocityX(0)
+            }
+
+            this.sprite.play(this.danceAnimationName, true)
+        }
+        //if (GameState.getCurrentGameState() == GameState.StateFinale) {
+
+        // if (GameState.getCurrentGameState() !== GameState.StateFinale) {
+        //     this.sprite.play(this.walkAnimationName, true)
+
+        //     this.sprite.setVelocityX(70)
+        // }
         // if(GameState.getCurrentGameState() === GameState.StateSearchingPrincess ||
         // GameState.getCurrentGameState() === GameState.StateJustReachedDanceFloor ||
         // GameState.getCurrentGameState() === GameState.StateReboundDancing ||
