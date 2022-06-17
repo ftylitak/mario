@@ -4,15 +4,23 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node scripts/start.js"
+        "start": "node scripts/start.js",
+        "lint": "npx eslint src test",
+        "lint:fix": "npm run lint -- --fix",
+        "prettier": "npx prettier src test --check",
+        "prettier:fix": "npm run prettier -- --write",
+        "format": "npm run prettier:fix && npm run lint:fix"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "phaser": "3.52.0"
+        "eslint-config-prettier": "^8.5.0",
+        "phaser": "3.52.0",
+        "prettier": "^2.7.1"
     },
     "devDependencies": {
+        "eslint": "^8.18.0",
         "parcel-bundler": "1.12.4",
         "sass": "1.32.5"
     }

@@ -20,7 +20,7 @@ class GameState {
         GameState.StateOnShipPrincess,
         GameState.StateReachedCrete,
         GameState.StatePrincessAtIslandPosition,
-        GameState.StateFinale,
+        GameState.StateFinale
     ]
 
     static currentStateIndex = 0
@@ -34,11 +34,11 @@ class GameState {
         console.log("new game state: ", GameState.getCurrentGameState())
     }
 
-    static goToNextStateTimed(timeoutMs=3000) {
+    static goToNextStateTimed(timeoutMs = 3000) {
         setTimeout(() => {
             GameState.goToNextState()
-        }, timeoutMs);
+        }, timeoutMs)
     }
 }
 
-export default GameState;
+export default GameState

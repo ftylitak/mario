@@ -1,22 +1,21 @@
+import Phaser from "phaser"
 
-import Phaser from 'phaser'
+import Game from "./scenes/Game.js"
+import GameOver from "./scenes/GameOver.js"
 
-import Game from './scenes/Game.js'
-import GameOver from './scenes/GameOver.js'
-
-import './assets/scss/index.scss'
+import "./assets/scss/index.scss"
 
 const config = {
     type: Phaser.CANVAS,
     width: 640,
     height: 480,
-    parent: 'mario',
-    backgroundColor: '#A4D3DA',
-    title: 'Tilemap',
-    url: 'webtips.dev',
+    parent: "mario",
+    backgroundColor: "#A4D3DA",
+    title: "Tilemap",
+    url: "webtips.dev",
     pixelArt: true,
     physics: {
-        default: 'arcade',
+        default: "arcade",
         arcade: {
             // debug: true, // Set it to true if you want debugger enabled by default
             gravity: {
@@ -24,12 +23,8 @@ const config = {
             }
         }
     },
-    scene: [
-        Game,
-        GameOver
-    ],
+    scene: [Game, GameOver],
     scale: {
-
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
 
@@ -55,12 +50,12 @@ const config = {
         // maxWidth: 1600,
         // maxHeight: 1200,
 
-        zoom: 1.5,  // Size of game canvas = game size * zoom
+        zoom: 1.5 // Size of game canvas = game size * zoom
     },
     render: {
         pixelArt: true
-      },
+    },
     autoRound: false
-};
+}
 
-new Phaser.Game(config);
+new Phaser.Game(config)
