@@ -148,6 +148,17 @@ export default (scene) => {
     })
 
     scene.anims.create({
+        key: "luigiDance",
+        frames: scene.anims.generateFrameNames("atlasDancers", {
+            prefix: "dancersatlas_",
+            start: 1,
+            end: 3
+        }),
+        frameRate: 3,
+        repeat: -1
+    })
+
+    scene.anims.create({
         key: "mushIdle",
         frames: [{ key: "atlasDancers", frame: "dancersatlas_4" }],
         frameRate: 10
@@ -165,6 +176,17 @@ export default (scene) => {
     })
 
     scene.anims.create({
+        key: "mushDance",
+        frames: scene.anims.generateFrameNames("atlasDancers", {
+            prefix: "dancersatlas_",
+            start: 5,
+            end: 7
+        }),
+        frameRate: 3,
+        repeat: -1
+    })
+
+    scene.anims.create({
         key: "barioIdle",
         frames: [{ key: "atlasDancers", frame: "dancersatlas_8" }],
         frameRate: 10
@@ -172,6 +194,17 @@ export default (scene) => {
 
     scene.anims.create({
         key: "barioWalk",
+        frames: scene.anims.generateFrameNames("atlasDancers", {
+            prefix: "dancersatlas_",
+            start: 9,
+            end: 11
+        }),
+        frameRate: 5,
+        repeat: -1
+    })
+
+    scene.anims.create({
+        key: "barioDance",
         frames: scene.anims.generateFrameNames("atlasDancers", {
             prefix: "dancersatlas_",
             start: 9,

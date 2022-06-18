@@ -15,7 +15,7 @@ import Dancer from "../gameObjects/Dancer"
 
 import Mark from "../gameObjects/Mark"
 
-import text from "../dialogText"
+import data from "../dialogText"
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -45,7 +45,7 @@ class Game extends Phaser.Scene {
 
         this.load.audio("main", ["./assets/main.mp3"])
         this.load.audio("jump", ["./assets/jump.wav"])
-        this.load.audio("rebound", ["./assets/The_Cure-A_Forest_(8_bit).mp3"])
+        this.load.audio("rebound", ["./assets/reboundMusic.mp3"])
         this.load.audio("blip", ["./assets/blip.mp3"])
 
         this.load.on("complete", () => {
@@ -211,17 +211,23 @@ class Game extends Phaser.Scene {
         } else if (GameState.getCurrentGameState() === GameState.StateFinale) {
             if (!this.finaleInitialized) {
                 this.dialog.init()
-                this.dialog.setText(text, true)
+                this.dialog.setText(data.text, true)
                 this.finaleInitialized = true
 
                 this.dancers = [
-                    new Dancer(this, 3687, 250, "atlasDancers", "luigiWalk", "luigiIdle", 4224)
+                    new Dancer(this, 3687, 250, "atlasDancers", "luigiWalk", "luigiDance", 4224)
                         .collideWith(this.platform)
                         .collideWith(this.ship),
-                    new Dancer(this, 3740, 250, "atlasDancers", "mushWalk", "mushIdle", 4255)
+                    new Dancer(this, 3740, 250, "atlasDancers", "mushWalk", "mushDance", 4255)
                         .collideWith(this.platform)
                         .collideWith(this.ship),
-                    new Dancer(this, 3812, 250, "atlasDancers", "barioWalk", "barioIdle", 4096)
+                    new Dancer(this, 3812, 250, "atlasDancers", "barioWalk", "barioDance", 4096)
+                        .collideWith(this.platform)
+                        .collideWith(this.ship),
+                    new Dancer(this, 3780, 250, "atlas", "goombaRun", "goombaRun", 4300)
+                        .collideWith(this.platform)
+                        .collideWith(this.ship),
+                    new Dancer(this, 3710, 250, "atlas", "goombaRun", "goombaRun", 4000)
                         .collideWith(this.platform)
                         .collideWith(this.ship)
                 ]

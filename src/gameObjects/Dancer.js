@@ -21,6 +21,9 @@ class Dancer {
         this.reachedX = false
         this.princessIslandPosition = 4190
 
+        this.goesLeft = Math.floor(Math.random(100) * 100) % 2 === 0
+        this.tickCount = Math.floor(Math.random(100) * 100)
+
         return this
     }
 
@@ -35,7 +38,7 @@ class Dancer {
     }
 
     update() {
-        if (this.sprite.x < this.targetX) {
+        if (!this.reachedX && this.sprite.x < this.targetX) {
             this.sprite.play(this.walkAnimationName, true)
             this.sprite.setVelocityX(35)
         } else {
@@ -44,70 +47,16 @@ class Dancer {
                 this.sprite.setVelocityX(0)
 
                 this.sprite.setFlipX(this.sprite.x > this.princessIslandPosition)
+            } else {
+                this.sprite.play(this.danceAnimationName, true)
+
+                if (this.tickCount % 100 === 0) {
+                    this.sprite.setFlipX(this.goesLeft)
+                    this.goesLeft = !this.goesLeft
+                }
             }
-
-            this.sprite.play(this.danceAnimationName, true)
         }
-        //if (GameState.getCurrentGameState() == GameState.StateFinale) {
-
-        // if (GameState.getCurrentGameState() !== GameState.StateFinale) {
-        //     this.sprite.play(this.walkAnimationName, true)
-
-        //     this.sprite.setVelocityX(70)
-        // }
-        // if(GameState.getCurrentGameState() === GameState.StateSearchingPrincess ||
-        // GameState.getCurrentGameState() === GameState.StateJustReachedDanceFloor ||
-        // GameState.getCurrentGameState() === GameState.StateReboundDancing ||
-        // GameState.getCurrentGameState() === GameState.StateFinale) {
-        //     this.danceRebound()
-        // }
-        // else if(GameState.getCurrentGameState() === GameState.StateHeadingToShip ||
-        //          GameState.getCurrentGameState() === GameState.StateOnShipMario) {
-        //     this.sprite.setVelocityX(70).setFlipX(false);
-        //     this.sprite.body.onFloor() && this.sprite.play('runP', true);
-        //     if(this.jumpTriggersX.includes(this.sprite.x) && this.jumpEnabled) {
-        //         this.sprite.setVelocityY(-350);
-        //         this.sprite.play('jumpP', true);
-        //         this.jumpEnabled = false
-        //     }
-        //     else this.jumpEnabled = true
-        //     if(this.sprite.x >= this.shipPositionX) {
-        //         this.sprite.setVelocityX(0);
-        //         GameState.goToNextState()
-        //     }
-        // }
-        // else if(GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
-        //     this.sprite.play('idleP', true);
-        //     //this.sprite.setVelocityX(60).setFlipX(false);
-        // }
-        // else if (GameState.getCurrentGameState() === GameState.StateReachedCrete) {
-        //     this.sprite.setVelocityX(70).setFlipX(false);
-        //     this.sprite.play('runP', true);
-        //     console.log("Princess x: ", this.sprite.x)
-        //     if(this.sprite.x >= this.islandPosition) {
-        //         this.sprite.setVelocityX(0).setFlipX(true);
-        //         this.sprite.play('idleP', true);
-        //         GameState.goToNextState()
-        //     }
-        // }
-    }
-
-    danceRebound() {
-        if (!this.sprite.anims.isPlaying || this.sprite.anims.currentAnim.key === "runP") {
-            // if(this.currentAnimation === 'danceP_Front')
-            //     this.currentAnimation = 'danceP_Back'
-            // if(this.currentAnimation === 'danceP_Back') {
-            //     this.currentAnimation = 'danceP_Front'
-            //     this.flipX = !this.flipX
-            // }
-            this.flipX = !this.flipX
-            this.sprite.setFlipX(this.flipX)
-            if (this.animationCircleCnt === 3) {
-                this.currentAnimation = this.sprite.play("danceP_special", true)
-                this.animationCircleCnt = -1
-            } else this.currentAnimation = this.sprite.play("danceP_Front", true)
-            this.animationCircleCnt += 1
-        }
+        this.tickCount++
     }
 }
 
