@@ -40,7 +40,7 @@ class Dialog {
         if (this.closeBtn) this.closeBtn.visible = this.visible
     }
 
-    // Slowly displays the text in the window to make it appear annimated
+    // Slowly displays the text in the window to make it appear animated
     _animateText() {
         this.eventCounter++
         this.text.setText(this.text.text + this.dialog[this.eventCounter - 1])

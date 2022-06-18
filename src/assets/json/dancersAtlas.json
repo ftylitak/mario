@@ -5,7 +5,7 @@
             "frame": {
                 "x": 0,
                 "y": 0,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -16,9 +16,9 @@
         {
             "filename": "dancersatlas_1",
             "frame": {
-                "x": 16,
+                "x": 24,
                 "y": 0,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -29,9 +29,9 @@
         {
             "filename": "dancersatlas_2",
             "frame": {
-                "x": 32,
+                "x": 48,
                 "y": 0,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -42,9 +42,9 @@
         {
             "filename": "dancersatlas_3",
             "frame": {
-                "x": 48,
+                "x": 72,
                 "y": 0,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -57,7 +57,7 @@
             "frame": {
                 "x": 0,
                 "y": 32,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -68,9 +68,9 @@
         {
             "filename": "dancersatlas_5",
             "frame": {
-                "x": 16,
+                "x": 24,
                 "y": 32,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -81,9 +81,9 @@
         {
             "filename": "dancersatlas_6",
             "frame": {
-                "x": 32,
+                "x": 48,
                 "y": 32,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -94,9 +94,9 @@
         {
             "filename": "dancersatlas_7",
             "frame": {
-                "x": 48,
+                "x": 72,
                 "y": 32,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -109,7 +109,7 @@
             "frame": {
                 "x": 0,
                 "y": 64,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -120,9 +120,9 @@
         {
             "filename": "dancersatlas_9",
             "frame": {
-                "x": 16,
+                "x": 24,
                 "y": 64,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -133,9 +133,9 @@
         {
             "filename": "dancersatlas_10",
             "frame": {
-                "x": 32,
+                "x": 48,
                 "y": 64,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {
@@ -146,9 +146,9 @@
         {
             "filename": "dancersatlas_11",
             "frame": {
-                "x": 48,
+                "x": 72,
                 "y": 64,
-                "w": 16,
+                "w": 24,
                 "h": 32
             },
             "anchor": {

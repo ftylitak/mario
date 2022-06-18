@@ -19,6 +19,7 @@ class Dancer {
         this.animationCircleCnt = 0
         this.targetX = targetX
         this.reachedX = false
+        this.princessIslandPosition = 4190
 
         return this
     }
@@ -41,6 +42,8 @@ class Dancer {
             if (!this.reachedX) {
                 this.reachedX = true
                 this.sprite.setVelocityX(0)
+
+                this.sprite.setFlipX(this.sprite.x > this.princessIslandPosition)
             }
 
             this.sprite.play(this.danceAnimationName, true)
