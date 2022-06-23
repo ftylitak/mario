@@ -17,6 +17,26 @@ import Mark from "../gameObjects/Mark"
 
 import data from "../dialogText"
 
+const randomAssetNames = [
+    "plane",
+    "ship",
+    "car",
+    "lights",
+    "drinks",
+    "cameras",
+    "food",
+    "friends",
+    "dj",
+    "music",
+    "flowers",
+    "sunset",
+    "dance",
+    "family",
+    "party",
+    "crazy mood"
+]
+let randomAssetNameIndex = Math.floor(Math.random() * (randomAssetNames.length - 1))
+
 class Game extends Phaser.Scene {
     constructor() {
         super("Game")
@@ -76,7 +96,10 @@ class Game extends Phaser.Scene {
         })
 
         this.load.on("fileprogress", function (file) {
-            assetText.setText("Loading asset: " + file.key)
+            assetText.setText("Loading asset: " + randomAssetNames[randomAssetNameIndex])
+
+            randomAssetNameIndex++
+            if (randomAssetNameIndex >= randomAssetNames.length) randomAssetNameIndex = 0
         })
 
         this.load.image("tiles", "./assets/tiles.png")
