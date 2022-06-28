@@ -321,13 +321,19 @@ class Game extends Phaser.Scene {
         if (mark.getTicks() % 150 === 0) mark.sprt.setVisible(false)
     }
 
-    syncAudio(playerPositionX) {
-        if (playerPositionX < 1930) {
-            if (!this.musicMain.isPlaying) this.musicMain.resume()
-            if (this.musicRebound.isPlaying) this.musicRebound.pause()
-        } else {
+    syncAudio(playerPositionX, playerPositionY) {
+        if (
+            GameState.currentStateIndex >= 2 || // hardcoded for simplicity...
+            (playerPositionX >= 1930 && playerPositionX < 2000 && playerPositionY > 230) ||
+            (playerPositionX >= 2000 && playerPositionX < 2050 && playerPositionY > 236) ||
+            (playerPositionX >= 2050 && playerPositionX < 2637 && playerPositionY > 280) ||
+            (playerPositionX >= 2637 && playerPositionX < 2910 && playerPositionY > 306)
+        ) {
             if (this.musicMain.isPlaying) this.musicMain.pause()
             if (!this.musicRebound.isPlaying) this.musicRebound.resume()
+        } else {
+            if (!this.musicMain.isPlaying) this.musicMain.resume()
+            if (this.musicRebound.isPlaying) this.musicRebound.pause()
         }
     }
 
@@ -343,7 +349,7 @@ class Game extends Phaser.Scene {
             }
         }
 
-        this.syncAudio(this.player.sprite.x)
+        this.syncAudio(this.player.sprite.x, this.player.sprite.y)
 
         if (GameState.getCurrentGameState() === GameState.StateReboundDancing) {
             if (!this.mark1 || !this.mark2) {
