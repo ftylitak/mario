@@ -221,6 +221,7 @@ class Game extends Phaser.Scene {
 
         this.platform = this.map.createStaticLayer("platform", this.tileset, 0, 0)
         this.ship = this.map.createStaticLayer("ship", this.tileset, 0, 0)
+        this.shipBackground = this.map.createStaticLayer("ship-background", this.tileset, 0, 0)
 
         this.map.createStaticLayer("background", this.tileset, 0, 0)
         this.map.createStaticLayer("beachBar", this.beachTileset, 0, 0)
@@ -313,6 +314,7 @@ class Game extends Phaser.Scene {
             }
         } else if (GameState.getCurrentGameState() === GameState.StateOnShipPrincess) {
             this.ship.x += 1
+            this.shipBackground.x += 1
 
             let speedCorrection = 1000 / 60 / delta
             this.player.sprite.setVelocityX(60 * speedCorrection)
@@ -325,6 +327,7 @@ class Game extends Phaser.Scene {
             }
             if (this.ship.x % 8 === 0 && (this.ship.x < 485 || this.ship.y !== 0)) {
                 this.ship.y += this.shipGoesDown ? 1 : -1
+                this.shipBackground.y += this.shipGoesDown ? 1 : -1
             }
             if (this.ship.x % 40 === 0) {
                 this.shipGoesDown = !this.shipGoesDown
