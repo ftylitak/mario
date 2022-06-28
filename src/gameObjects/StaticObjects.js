@@ -14,7 +14,6 @@ class StaticObjects {
         const gidOffset = 5320
 
         for (const coin of coinBarObjects) {
-            console.log("static object: ", coin)
             const flagCoordinates = this.scene.barItemTileset.texCoordinates[coin.gid - gidOffset] // 962 is the tile index in tiled for the flag
 
             this.scene = scene

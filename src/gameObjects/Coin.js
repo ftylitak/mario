@@ -14,7 +14,6 @@ class Coin {
         const coinBarObjects = this.scene.map.getObjectLayer("coin-bar").objects
 
         for (const coin of coinObjects) {
-            console.log("Coin: ", coin)
             const flagCoordinates = this.scene.tileset.texCoordinates[coin.gid - 1] // 962 is the tile index in tiled for the flag
 
             this.scene = scene
@@ -27,12 +26,10 @@ class Coin {
             this.coins.add(sprt)
         }
 
-        console.log("this.scene.barItemTileset: ", this.scene.barItemTileset)
         const gidOffset = 5320
 
         for (const coin of coinBarObjects) {
             const flagCoordinates = this.scene.barItemTileset.texCoordinates[coin.gid - gidOffset] // 962 is the tile index in tiled for the flag
-            console.log("Coin-bar-item: ", coin, ", tile: ", flagCoordinates, ", id: ", coin.gid - gidOffset)
 
             this.scene = scene
             const sprt = this.scene.add

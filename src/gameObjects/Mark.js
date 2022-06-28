@@ -29,8 +29,6 @@ class Mark {
 
         this.tickCount = Math.floor(Math.random(100) * 100)
         this.markGoesRight = this.tickCount > 50
-
-        console.log("mark sprit: ", this.sprt)
     }
 
     getTicks() {

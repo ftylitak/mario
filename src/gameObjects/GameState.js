@@ -31,7 +31,6 @@ class GameState {
 
     static goToNextState() {
         GameState.currentStateIndex++
-        console.log("new game state: ", GameState.getCurrentGameState())
     }
 
     static goToNextStateTimed(timeoutMs = 3000) {

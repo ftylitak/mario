@@ -74,7 +74,7 @@ class Dialog {
         // Reset the dialog
         if (this.text) this.text.destroy()
 
-        var x = this.padding + this.windowDimensions.x
+        var x = this.windowDimensions.x + this.padding
         var y = this.windowDimensions.y - this.padding + 10
         //var y = this._getGameHeight() - this.padding + 10;
 
@@ -113,8 +113,8 @@ class Dialog {
 
     // Calculates where to place the dialog window based on the game size
     _calculateWindowDimensions(width, height) {
-        var x = 3850
-        var y = 30
+        var x = 3840
+        var y = 20
         var rectWidth = width - this.padding * 2
         var rectHeight = this.windowHeight
         return {

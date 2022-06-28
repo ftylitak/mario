@@ -80,8 +80,6 @@ class Princess {
         } else if (GameState.getCurrentGameState() === GameState.StateReachedCrete) {
             this.sprite.setVelocityX(70).setFlipX(false)
             this.sprite.play("runP", true)
-            console.log("Princess x: ", this.sprite.x)
-
             if (this.sprite.x >= this.islandPosition) {
                 this.sprite.setVelocityX(0).setFlipX(true)
                 this.sprite.play("idleP", true)

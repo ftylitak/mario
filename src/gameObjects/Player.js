@@ -27,8 +27,6 @@ class Player {
         this.shipPositionX = 3172
         this.islandPosition = 4145
 
-        console.log("player game state: ", GameState.getCurrentGameState())
-
         this.audioJump = this.scene.sound.add("jump")
 
         return this
@@ -123,8 +121,6 @@ class Player {
         ) {
             this.sprite.setVelocityX(70).setFlipX(false)
             this.sprite.play("run", true)
-            console.log("Mario x: ", this.sprite.x)
-
             if (this.sprite.x >= this.islandPosition) {
                 this.sprite.setVelocityX(0).setFlipX(false)
                 this.sprite.play("idle", true)

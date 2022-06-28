@@ -5,7 +5,6 @@ import GameOver from "./scenes/GameOver.js"
 
 import "./assets/scss/index.scss"
 
-console.log("window width: ", window.innerWidth, ", height: ", window.innerHeight)
 let sizeRatio = 1
 
 if (window.innerHeight >= 700 && window.innerHeight < 900) {
