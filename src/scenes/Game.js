@@ -265,7 +265,7 @@ class Game extends Phaser.Scene {
 
         this.inputs = this.input.keyboard.createCursorKeys()
 
-        if (window.mobileCheck())
+        if (window.mobileCheck()) {
             this.joystick = new JoyStick(
                 "joyDiv",
                 {
@@ -278,19 +278,27 @@ class Game extends Phaser.Scene {
                     autoReturnToCenter: true
                 },
                 (stickData) => {
-                    console.log(
-                        "this.inputs: ",
-                        this.inputs,
-                        stickData.xPosition,
-                        stickData.x,
-                        stickData.yPosition,
-                        stickData.y
-                    )
                     this.inputs.right.isDown = stickData.x >= 50
                     this.inputs.left.isDown = stickData.x <= -50
+                }
+            )
+
+            this.joystickJump = new JoyStick(
+                "joyDiv2",
+                {
+                    title: "joystick",
+                    internalFillColor: "#454545",
+                    internalLineWidth: 2,
+                    internalStrokeColor: "#252525",
+                    externalLineWidth: 2,
+                    externalStrokeColor: "#454545",
+                    autoReturnToCenter: true
+                },
+                (stickData) => {
                     this.inputs.space.isDown = stickData.y >= 50
                 }
             )
+        }
 
         this.shipTargetX = 540
         this.shipGoesDown = true
@@ -411,9 +419,7 @@ class Game extends Phaser.Scene {
         }
     }
 
-    trigger() {
-        console.log("triggered!")
-    }
+    trigger() {}
 }
 
 export default Game
