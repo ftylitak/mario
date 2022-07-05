@@ -78,13 +78,10 @@ class Dialog {
         var y = this.windowDimensions.y - this.padding + 10
         //var y = this._getGameHeight() - this.padding + 10;
 
-        this.text = this.scene.make.text({
-            x,
-            y,
-            text,
-            style: {
-                wordWrap: { width: this._getGameWidth() - this.padding * 2 - 25 }
-            }
+        this.text = this.scene.add.text(x, y, text, {
+            wordWrap: { width: this._getGameWidth() - this.padding * 2 - 25 },
+            fontFamily: "Arial",
+            fontSize: "14px"
         })
     }
 
