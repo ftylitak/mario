@@ -94,6 +94,14 @@ class Game extends Phaser.Scene {
             this.access_code_valid = false
             return
         }
+
+        if (qs && qs.lang && qs.lang === "en") {
+            this.textLanguage = "en"
+            console.log("lang: en")
+        } else {
+            this.textLanguage = "gr"
+        }
+
         this.access_code_valid = true
 
         var progressBar = this.add.graphics()
@@ -395,7 +403,8 @@ class Game extends Phaser.Scene {
         } else if (GameState.getCurrentGameState() === GameState.StateFinale) {
             if (!this.finaleInitialized) {
                 this.dialog.init()
-                this.dialog.setText(data.text, true)
+                let textContent = this.textLanguage === "en" ? data.text_en : data.text
+                this.dialog.setText(textContent, true)
                 this.finaleInitialized = true
 
                 this.dancers = [
